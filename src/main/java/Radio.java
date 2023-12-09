@@ -1,17 +1,18 @@
 public class Radio {
 
     private int currentNumberRadioStation; // текущая станция
-
     private int currentSoundVolume; // текущая громкость
+    private int maxNumberRadioStation; // мин станция
+    private int minNumberRadioStation; // макс станция
 
-    private int setMaxNumberRadioStation() {
-        currentNumberRadioStation = 9; // макс номер станции
-        return currentNumberRadioStation;
+    public Radio() { // 10 станций
+        this.maxNumberRadioStation = 9;
+        this.minNumberRadioStation = 0;
     }
 
-    private int setMinNumberRadioStation() {
-        currentNumberRadioStation = 0; // мин номер станции
-        return currentNumberRadioStation;
+    public Radio(int count) { // любое кол-во станций
+        this.maxNumberRadioStation = count - 1;
+        this.minNumberRadioStation = 0;
     }
 
     private int setMinSoundVolume() {
@@ -29,11 +30,11 @@ public class Radio {
     }
 
     public void setCurrentNumberRadioStation(int newCurrentNumberRadioStation) {
-        if (newCurrentNumberRadioStation > 9) {
-            newCurrentNumberRadioStation = setMaxNumberRadioStation();
+        if (newCurrentNumberRadioStation > maxNumberRadioStation) {
+            newCurrentNumberRadioStation = maxNumberRadioStation;
         }
-        if (newCurrentNumberRadioStation < 0) {
-            newCurrentNumberRadioStation = setMinNumberRadioStation();
+        if (newCurrentNumberRadioStation < minNumberRadioStation) {
+            newCurrentNumberRadioStation = minNumberRadioStation;
         }
         currentNumberRadioStation = newCurrentNumberRadioStation;
     }
@@ -53,18 +54,18 @@ public class Radio {
     }
 
     public void nextNumberRadioStation() { //увеличение номера радиостанции
-        if (currentNumberRadioStation < 9) {
+        if (currentNumberRadioStation < maxNumberRadioStation) {
             currentNumberRadioStation++; // если меньше 9 то +1
         } else {
-            currentNumberRadioStation = setMinNumberRadioStation(); // если 9 то мин номер
+            currentNumberRadioStation = minNumberRadioStation; // если 9 то мин номер
         }
     }
 
     public void prevNumberRadioStation() { //уменьшение номера радиостанции
-        if (currentNumberRadioStation > 0) {
+        if (currentNumberRadioStation > minNumberRadioStation) {
             currentNumberRadioStation--; // если меньше 0 то -1
         } else {
-            currentNumberRadioStation = setMaxNumberRadioStation(); // если 0 то макс номер
+            currentNumberRadioStation = maxNumberRadioStation; // если 0 то макс номер
         }
     }
 

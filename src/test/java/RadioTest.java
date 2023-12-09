@@ -3,8 +3,8 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
     @Test
-
-    public void shouldCurrentNumber() { // тест текущий номер станции
+    // тест текущий номер станции
+    public void shouldCurrentNumber() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(5);
 
@@ -15,8 +15,20 @@ public class RadioTest {
     }
 
     @Test
+    // тест текущий номер станции с установленным кол-вом станций
+    public void shouldCurrentNumberModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(15);
 
-    public void shouldCurrentNumberMoreMax() { // тест текущий номер станции
+        int expected = 15;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест больше макс номера станции
+    public void shouldCurrentNumberMoreMax() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(10);
 
@@ -27,8 +39,20 @@ public class RadioTest {
     }
 
     @Test
+    // тест больше макс номера станции с установленным кол-вом станций
+    public void shouldCurrentNumberMoreMaxModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(30);
 
-    public void shouldCurrentNumberLessMin() { // тест текущий номер станции
+        int expected = 29;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест мееньше мин номер станции
+    public void shouldCurrentNumberLessMin() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(-1);
 
@@ -39,21 +63,46 @@ public class RadioTest {
     }
 
     @Test
+    // тест меньше мин номер станции с установленным кол-вом станций
+    public void shouldCurrentNumberLessMinModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(-1);
 
-    public void shouldNextNumberRadioStation() { // тест следующей станции
-        Radio radio = new Radio();
-        radio.setCurrentNumberRadioStation(8);
-        radio.nextNumberRadioStation();
-
-        int expected = 9;
+        int expected = 0;
         int actual = radio.getCurrentNumberRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
+    // тест следующей станции
+    public void shouldNextNumberRadioStation() {
+        Radio radio = new Radio();
+        radio.setCurrentNumberRadioStation(5);
+        radio.nextNumberRadioStation();
 
-    public void shouldNextNumberRadioStationIfMax() { // тест следующей станции
+        int expected = 6;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест следующей станции с установленным кол-вом станций
+    public void shouldNextNumberRadioStationModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(15);
+        radio.nextNumberRadioStation();
+
+        int expected = 16;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест следующей станции
+    public void shouldNextNumberRadioStationIfMax() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(9);
         radio.nextNumberRadioStation();
@@ -65,8 +114,21 @@ public class RadioTest {
     }
 
     @Test
+    // тест следующей станции с установленным кол-вом станций
+    public void shouldNextNumberRadioStationIfMaxModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(29);
+        radio.nextNumberRadioStation();
 
-    public void shouldPrevNumberRadioStation() { // тест предыдущей станции
+        int expected = 0;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест предыдущей станции
+    public void shouldPrevNumberRadioStation() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(5);
         radio.prevNumberRadioStation();
@@ -78,13 +140,39 @@ public class RadioTest {
     }
 
     @Test
+    // тест предыдущей станции с установленным кол-вом станций
+    public void shouldPrevNumberRadioStationModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(15);
+        radio.prevNumberRadioStation();
 
-    public void shouldPrevNumberRadioStationIfMin() { // тест предыдущей станции
+        int expected = 14;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест предыдущей станции
+    public void shouldPrevNumberRadioStationIfMin() {
         Radio radio = new Radio();
         radio.setCurrentNumberRadioStation(0);
         radio.prevNumberRadioStation();
 
         int expected = 9;
+        int actual = radio.getCurrentNumberRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    // тест предыдущей станции с установленным кол-вом станций
+    public void shouldPrevNumberRadioStationIfMinModRadio() {
+        Radio radio = new Radio(30);
+        radio.setCurrentNumberRadioStation(0);
+        radio.prevNumberRadioStation();
+
+        int expected = 29;
         int actual = radio.getCurrentNumberRadioStation();
 
         Assertions.assertEquals(expected, actual);
